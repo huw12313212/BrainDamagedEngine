@@ -25,6 +25,10 @@
 		8A17B3BA17C5AD0C0010540A /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8A17B3B917C5AD0C0010540A /* OpenGLES.framework */; };
 		8A17B3BD17C5AD940010540A /* GLView.mm in Sources */ = {isa = PBXBuildFile; fileRef = 8A17B3BC17C5AD940010540A /* GLView.mm */; };
 		8A17B3C217C5C43C0010540A /* RenderingEngine1.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8A17B3C017C5C43C0010540A /* RenderingEngine1.cpp */; };
+		8AF455D717D20595009111C9 /* Debugger.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8AF455D617D20595009111C9 /* Debugger.cpp */; };
+		8AF455DA17D223DD009111C9 /* RenderingEngine2.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8AF455D917D223DD009111C9 /* RenderingEngine2.cpp */; };
+		8AF455DD17D22652009111C9 /* Simple.vert in Sources */ = {isa = PBXBuildFile; fileRef = 8AF455DC17D22652009111C9 /* Simple.vert */; };
+		8AF455DF17D226AE009111C9 /* Simple.frag in Sources */ = {isa = PBXBuildFile; fileRef = 8AF455DE17D226AE009111C9 /* Simple.frag */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -64,6 +68,12 @@
 		8A17B3BF17C5C1DD0010540A /* IRenderingEngine.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = IRenderingEngine.hpp; sourceTree = "<group>"; };
 		8A17B3C017C5C43C0010540A /* RenderingEngine1.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = RenderingEngine1.cpp; sourceTree = "<group>"; };
 		8A17B3C117C5C43C0010540A /* RenderingEngine1.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RenderingEngine1.h; sourceTree = "<group>"; };
+		8AF455D517D20580009111C9 /* Debugger.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Debugger.h; sourceTree = "<group>"; };
+		8AF455D617D20595009111C9 /* Debugger.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Debugger.cpp; sourceTree = "<group>"; };
+		8AF455D817D22366009111C9 /* RenderingEngine2.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RenderingEngine2.h; sourceTree = "<group>"; };
+		8AF455D917D223DD009111C9 /* RenderingEngine2.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = RenderingEngine2.cpp; sourceTree = "<group>"; };
+		8AF455DC17D22652009111C9 /* Simple.vert */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = Simple.vert; sourceTree = "<group>"; };
+		8AF455DE17D226AE009111C9 /* Simple.frag */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = Simple.frag; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -127,6 +137,7 @@
 		8A17B38817C5AB540010540A /* OpenGL_ES_Test */ = {
 			isa = PBXGroup;
 			children = (
+				8AF455DB17D2261E009111C9 /* Shaders */,
 				8A78D96717D1E24C00A4D7E9 /* RenderEngine */,
 				8A78D96617D1E20700A4D7E9 /* GLView */,
 				8A17B39117C5AB540010540A /* huwTestAppDelegate.h */,
@@ -184,8 +195,21 @@
 				8A17B3BF17C5C1DD0010540A /* IRenderingEngine.hpp */,
 				8A17B3C017C5C43C0010540A /* RenderingEngine1.cpp */,
 				8A17B3C117C5C43C0010540A /* RenderingEngine1.h */,
+				8AF455D517D20580009111C9 /* Debugger.h */,
+				8AF455D617D20595009111C9 /* Debugger.cpp */,
+				8AF455D817D22366009111C9 /* RenderingEngine2.h */,
+				8AF455D917D223DD009111C9 /* RenderingEngine2.cpp */,
 			);
 			name = RenderEngine;
+			sourceTree = "<group>";
+		};
+		8AF455DB17D2261E009111C9 /* Shaders */ = {
+			isa = PBXGroup;
+			children = (
+				8AF455DC17D22652009111C9 /* Simple.vert */,
+				8AF455DE17D226AE009111C9 /* Simple.frag */,
+			);
+			name = Shaders;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -302,6 +326,10 @@
 				8A17B39317C5AB540010540A /* huwTestAppDelegate.mm in Sources */,
 				8A17B3BD17C5AD940010540A /* GLView.mm in Sources */,
 				8A17B3C217C5C43C0010540A /* RenderingEngine1.cpp in Sources */,
+				8AF455D717D20595009111C9 /* Debugger.cpp in Sources */,
+				8AF455DA17D223DD009111C9 /* RenderingEngine2.cpp in Sources */,
+				8AF455DD17D22652009111C9 /* Simple.vert in Sources */,
+				8AF455DF17D226AE009111C9 /* Simple.frag in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

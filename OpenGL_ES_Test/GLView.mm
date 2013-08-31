@@ -13,6 +13,8 @@
 
 @implementation GLView
 
+const bool ForceES1 = false;
+
 + (Class) layerClass
 {
     return [CAEAGLLayer class];
@@ -24,14 +26,26 @@
         CAEAGLLayer* eaglLayer = (CAEAGLLayer*) super.layer;
         eaglLayer.opaque = YES;
         
-        m_context = [[EAGLContext alloc] initWithAPI:kEAGLRenderingAPIOpenGLES1];
+        EAGLRenderingAPI api = kEAGLRenderingAPIOpenGLES2;
+        m_context = [[EAGLContext alloc] initWithAPI:api];
+        
+        if (!m_context || ForceES1) {
+            api = kEAGLRenderingAPIOpenGLES1;
+            m_context = [[EAGLContext alloc] initWithAPI:api];
+        }
         
         if (!m_context || ![EAGLContext setCurrentContext:m_context]) {
-            //[self release];
+           // [self release];
             return nil;
         }
         
-        m_renderingEngine = CreateRenderer1();
+        if (api == kEAGLRenderingAPIOpenGLES1) {
+            NSLog(@"Using OpenGL ES 1.1");
+            m_renderingEngine = CreateRenderer1();
+        } else {
+             NSLog(@"Using OpenGL ES 2.0");
+            m_renderingEngine = CreateRenderer2();
+        }
         
         [m_context
          renderbufferStorage:GL_RENDERBUFFER
@@ -70,9 +84,11 @@
 - (void) drawView: (CADisplayLink*) displayLink
 {
     if (displayLink != nil) {
+        
         float elapsedSeconds = displayLink.timestamp - m_timestamp;
         m_timestamp = displayLink.timestamp;
         m_renderingEngine->UpdateAnimation(elapsedSeconds);
+
     }
     
     m_renderingEngine->Render();

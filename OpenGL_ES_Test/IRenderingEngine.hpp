@@ -22,6 +22,7 @@ enum DeviceOrientation {
 
 // Creates an instance of the renderer and sets up various OpenGL state.
 struct IRenderingEngine* CreateRenderer1();
+struct IRenderingEngine* CreateRenderer2();
 
 // Interface to the OpenGL ES renderer; consumed by GLView.
 struct IRenderingEngine {
