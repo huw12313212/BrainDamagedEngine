@@ -17,6 +17,8 @@
 
 const bool ForceES1 = false;
 
+
+
 + (Class) layerClass
 {
     return [CAEAGLLayer class];
@@ -54,6 +56,7 @@ const bool ForceES1 = false;
          fromDrawable: eaglLayer];
         
         m_renderingEngine->Initialize(CGRectGetWidth(frame), CGRectGetHeight(frame));
+        m_touch_manager = new TouchTrackManager();
         
         [self drawView: nil];
         _lastDate = [NSDate date];
@@ -72,6 +75,8 @@ const bool ForceES1 = false;
          selector:@selector(didRotate:)
          name:UIDeviceOrientationDidChangeNotification
          object:nil];
+        
+        self.multipleTouchEnabled = true;
     }
     return self;
 }
@@ -89,12 +94,8 @@ const bool ForceES1 = false;
         
         NSDate *newDate = [NSDate date];
         float elapsedTime = [newDate timeIntervalSinceDate:_lastDate];
-        float fps = 1.0f / elapsedTime;
         _lastDate = newDate;
         
-        NSLog(@"elapsed time: %f", elapsedTime);
-        NSLog(@"fps: %f", fps);
-        NSLog(@"---");
         
         m_renderingEngine->UpdateAnimation(elapsedTime);
 
@@ -103,4 +104,106 @@ const bool ForceES1 = false;
     m_renderingEngine->Render();
     [m_context presentRenderbuffer:GL_RENDERBUFFER];
 }
+
+- (void) touchesBegan: (NSSet*) touches withEvent: (UIEvent*) event
+{
+    for (UITouch *touch in touches)
+    {
+        //found a touch .  Is it already on our list?
+        int fingerID = m_touch_manager->GetFingerTrackIDByTouch(touch);
+        
+        if (fingerID == -1)
+        {
+            //add it to our list
+            fingerID = m_touch_manager->AddNewTouch(touch);
+        } else
+        {
+            //already on the list.  Don't send this
+            //LogMsg("Ignoring touch %d", fingerID);
+            //continue;
+        }
+        
+        CGPoint pt =[touch locationInView:self];
+        m_renderingEngine->OnFingerDown(ivec2(pt.x, pt.y),fingerID);
+        
+    }
+
+}
+
+- (void) touchesEnded: (NSSet*) touches withEvent: (UIEvent*) event
+{
+    
+    for (UITouch *touch in touches)
+    {
+        //found a touch.  Is it already on our list?
+        int fingerID = m_touch_manager->GetFingerTrackIDByTouch(touch);
+        if (fingerID != -1)
+        {
+            m_touch_manager->g_touchTracker[fingerID].m_touchPointer = NULL; //clear it
+
+        }
+        else
+        {
+            //wasn't on our list
+            continue;
+        }
+        
+        CGPoint pt =[touch locationInView:self];
+        m_renderingEngine->OnFingerUp(ivec2(pt.x, pt.y),fingerID);
+    }
+
+   
+}
+
+- (void) touchesMoved: (NSSet*) touches withEvent: (UIEvent*) event
+{
+    for (UITouch *touch in touches)
+    {
+        
+        //found a touch.  Is it already on our list?
+        int fingerID =  m_touch_manager->GetFingerTrackIDByTouch(touch);
+        if (fingerID != -1)
+        {
+
+            //found it
+        } else
+        {
+            //wasn't on our list?!
+            continue;
+        }
+        
+        CGPoint previous  = [touch previousLocationInView: self];
+        CGPoint current = [touch locationInView: self];
+        m_renderingEngine->OnFingerMove(ivec2(previous.x, previous.y),
+                                        ivec2(current.x, current.y),fingerID);
+    }
+    
+
+}
+
+- (void)touchesCancelled:(NSSet *)touches withEvent:(UIEvent *)event
+{
+    for (UITouch *touch in touches)
+    {
+        //found a touch.  Is it already on our list?
+        int fingerID = m_touch_manager->GetFingerTrackIDByTouch(touch);
+        if (fingerID != -1)
+        {
+            m_touch_manager->g_touchTracker[fingerID].m_touchPointer = NULL; //clear it
+
+        }
+        else
+        {
+            //wasn't on our list
+            continue;
+        }
+        
+        CGPoint pt =[touch locationInView:self];
+        m_renderingEngine->OnFingerCancel(ivec2(pt.x, pt.y),fingerID);
+    }
+}
+
+
+
+
 @end

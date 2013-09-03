@@ -68,6 +68,9 @@
 		8A17B3BF17C5C1DD0010540A /* IRenderingEngine.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = IRenderingEngine.hpp; sourceTree = "<group>"; };
 		8A17B3C017C5C43C0010540A /* RenderingEngine1.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = RenderingEngine1.cpp; sourceTree = "<group>"; };
 		8A17B3C117C5C43C0010540A /* RenderingEngine1.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RenderingEngine1.h; sourceTree = "<group>"; };
+		8A612CAE17D5CF2800C703EB /* Vector.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Vector.hpp; sourceTree = "<group>"; };
+		8A84AFF817D62CD800459694 /* TouchTracker.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TouchTracker.h; sourceTree = "<group>"; };
+		8A84AFF917D62F3600459694 /* TouchTrackerManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TouchTrackerManager.h; sourceTree = "<group>"; };
 		8AF455D517D20580009111C9 /* Debugger.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Debugger.h; sourceTree = "<group>"; };
 		8AF455D617D20595009111C9 /* Debugger.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Debugger.cpp; sourceTree = "<group>"; };
 		8AF455D817D22366009111C9 /* RenderingEngine2.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RenderingEngine2.h; sourceTree = "<group>"; };
@@ -185,6 +188,8 @@
 			children = (
 				8A17B3BB17C5AD940010540A /* GLView.h */,
 				8A17B3BC17C5AD940010540A /* GLView.mm */,
+				8A84AFF817D62CD800459694 /* TouchTracker.h */,
+				8A84AFF917D62F3600459694 /* TouchTrackerManager.h */,
 			);
 			name = GLView;
 			sourceTree = "<group>";
@@ -199,6 +204,7 @@
 				8AF455D617D20595009111C9 /* Debugger.cpp */,
 				8AF455D817D22366009111C9 /* RenderingEngine2.h */,
 				8AF455D917D223DD009111C9 /* RenderingEngine2.cpp */,
+				8A612CAE17D5CF2800C703EB /* Vector.hpp */,
 			);
 			name = RenderEngine;
 			sourceTree = "<group>";

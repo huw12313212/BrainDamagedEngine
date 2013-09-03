@@ -87,7 +87,7 @@ void RenderingEngine2::Initialize(int width, int height)
 void RenderingEngine2::UpdateAnimation(float timeStep)
 {
     
-   // Debugger::Log()<<timeStep<<endl;
+    //Debugger::Log()<<"FPS:"<<1/timeStep<<endl;
     
     float direction = RotationDirection();
     if (direction == 0)
@@ -212,4 +212,21 @@ void RenderingEngine2::ApplyRotation(float degrees) const
     
     GLint modelviewUniform = glGetUniformLocation(m_simpleProgram, "Modelview");
     glUniformMatrix4fv(modelviewUniform, 1, 0, &zRotation[0]);
+}
+
+void RenderingEngine2::OnFingerUp(ivec2 location,int id)
+{
+    Debugger::Log()<<"["<<id<<"]TouchUp("<<location.x<<","<<location.y<<")"<<endl;
+}
+void RenderingEngine2::OnFingerDown(ivec2 location,int id)
+{
+    Debugger::Log()<<"["<<id<<"]TouchDown("<<location.x<<","<<location.y<<")"<<endl;
+}
+void RenderingEngine2::OnFingerMove(ivec2 oldLocation, ivec2 newLocation,int id)
+{
+    Debugger::Log()<<"["<<id<<"]TouchMove("<<newLocation.x<<","<<newLocation.y<<")"<<endl;
+}
+void RenderingEngine2::OnFingerCancel(ivec2 location,int id)
+{
+    Debugger::Log()<<"["<<id<<"]TouchOutside("<<location.x<<","<<location.y<<")"<<endl;
 }

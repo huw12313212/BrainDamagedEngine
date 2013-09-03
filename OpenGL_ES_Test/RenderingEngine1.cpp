@@ -137,5 +137,20 @@ float RenderingEngine1::RotationDirection() const
     return counterclockwise ? +1 : -1;
 }
 
-
+void RenderingEngine1::OnFingerUp(ivec2 location,int id)
+{
+    
+}
+void RenderingEngine1::OnFingerDown(ivec2 location,int id)
+{
+    
+}
+void RenderingEngine1::OnFingerMove(ivec2 oldLocation, ivec2 newLocation,int id)
+{
+    
+}
+void RenderingEngine1::OnFingerCancel(ivec2 location,int id)
+{
+    
+}
 
