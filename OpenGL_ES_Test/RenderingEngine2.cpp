@@ -87,7 +87,7 @@ void RenderingEngine2::Initialize(int width, int height)
 void RenderingEngine2::UpdateAnimation(float timeStep)
 {
     
-    Debugger::Log()<<timeStep<<endl;
+   // Debugger::Log()<<timeStep<<endl;
     
     float direction = RotationDirection();
     if (direction == 0)

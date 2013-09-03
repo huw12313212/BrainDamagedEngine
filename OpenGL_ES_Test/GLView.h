@@ -18,7 +18,8 @@
 @private
     EAGLContext* m_context;
     IRenderingEngine* m_renderingEngine;
-    float m_timestamp;
+    float _lastTimeStamp;
+    NSDate* _lastDate;
 }
 
 - (void) drawView: (CADisplayLink*) displayLink;

@@ -5,10 +5,12 @@
 //  Created by 王 瀚宇 on 13/8/22.
 //  Copyright (c) 2013年 王 瀚宇. All rights reserved.
 //
+#include <iostream>
 #import <OpenGLES/EAGLDrawable.h>
 #import "GLView.h"
 #import "mach/mach_time.h"
 #import <OpenGLES/ES2/gl.h> // <-- for GL_RENDERBUFFER only
+
 
 
 @implementation GLView
@@ -54,7 +56,7 @@ const bool ForceES1 = false;
         m_renderingEngine->Initialize(CGRectGetWidth(frame), CGRectGetHeight(frame));
         
         [self drawView: nil];
-        m_timestamp = CACurrentMediaTime();
+        _lastDate = [NSDate date];
         
         CADisplayLink* displayLink;
         displayLink = [CADisplayLink displayLinkWithTarget:self
@@ -85,9 +87,16 @@ const bool ForceES1 = false;
 {
     if (displayLink != nil) {
         
-        float elapsedSeconds = displayLink.timestamp - m_timestamp;
-        m_timestamp = displayLink.timestamp;
-        m_renderingEngine->UpdateAnimation(elapsedSeconds);
+        NSDate *newDate = [NSDate date];
+        float elapsedTime = [newDate timeIntervalSinceDate:_lastDate];
+        float fps = 1.0f / elapsedTime;
+        _lastDate = newDate;
+        
+        NSLog(@"elapsed time: %f", elapsedTime);
+        NSLog(@"fps: %f", fps);
+        NSLog(@"---");
+        
+        m_renderingEngine->UpdateAnimation(elapsedTime);
 
     }
     
